@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Medical site</title>
+    <style>
+        p1{
+            font-size: 100px;
+            margin-left: 1%;
+        }
+        span{
+            color: red;
+            font-size: 150px;
+            margin-left: 38%;
+        }
+        .below-50{
+          color: yellow;
+        }
+        .below-100{
+          color: green;
+        }
+        .above-100{
+          color: red;
+        }
+        
+        
+    </style>
+  </head>
+  <body>
+      <h1 class="alert alert-success my-5 text-center"><b>MEDICO</b></h1>
+      <div class="col-md-12 text-right" style="margin-top: -100px;">
+        <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+    </div>
+    {% block content %}
+    <div class="col-md-11 text-right" style="margin-left:3%;">
+      <a href="{% url 'meds' %}" class="btn btn-dark" style="margin-top: -65px;" ><b>MEDICINES</b></a>
+    </div><br><br><br>
+    <div class="col-md-12 text-center" style="margin-top: -190px;">
+      <form action="{% url 'search' %}" method="get">
+        {% csrf_token %}
+        <input type="text" name="search" placeholder="search medicines">
+        <button type="submit" class="btn btn-warning" style="font-size: 12px; margin-top: -5px;"><b>SEARCH</b></button>
+      </form>
+    </div><br><br><br><br>
+    <div class="col-md-12 text-right" style="font-size: 20px; color: gray;">
+    <small><b>{% now "d/m/y" %} {% now 'f a'%}</b></small>
+    </div>
+    <p1><b>HEALTHY LIFE GIVES US BETTER <span>LIFE!!</span></b></p1>
+    
+    <center>
+      <i style="color:green; font-size: 50px;"><b>welcome {{ user }}</b></i>
+    </center>
+    
+    {% endblock content %}
+    <div class="container">
+
+    </div>
+          
+  </body>
+</html>

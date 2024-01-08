@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-md-11 text-right" style="margin-left: 3%; margin-top: -38px;">
+    <a href="{% url 'base' %}" class="btn btn-info">HOME</a>
+</div>
+<br><br><br>
+<div class="container">
+    <div class="col col-8 offset-2">
+        <h3 class="alert alert-dark text-center">ADD MEDICINES</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="submit" class="btn btn-success">
+            <a href="{% url 'meds' %}" class="btn btn-info">Back to Meds</a>
+        </form>
+    </div>
+</div>
+{% endblock content %}

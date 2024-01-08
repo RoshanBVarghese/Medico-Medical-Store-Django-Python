@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-md-11 text-right" style="margin-left: 3%; margin-top: -38px;">
+    <a href="{% url 'base' %}" class="btn btn-info">HOME</a>
+</div>
+<br><br><br>
+<div class="container">
+    
+    <!-- Display Data-->
+    <h2 class="alert alert-dark text-center" style="margin-top: 15px;"><b>MEDICINE LISTS</b></h2>
+    <div class="col-md-13 text-right">
+        <a href="{% url 'add' %}" class="btn btn-success" style="margin-top: -1%;"><b>ADD</b></a>
+    </div>
+    <table class="table my-1">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">NAME</th>
+                <th scope="col">COMPANY</th>
+                <th scope="col">PRICE</th>
+                <th scope="col">DOSAGE</th>
+                <th scope="col">ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <th scope="row">{{i.id}}</th>
+                <td>{{i.name}}</td>
+                <td>{{i.company}}</td>
+                <td class="{% if i.price <= 50 %}below-50{% elif i.price <= 100 %}below-100{% elif i.price > 100 %}above-100{% endif %}">{{i.price}}</td>
+                <td>{{i.dosage}}</td>
+                <td>
+                    
+                    <!-- Update Icon -->
+                    
+                    <form class="d-inline" method="get" action="{% url 'update' i.id %}">
+                        <button type="submit" class="btn btn-success">
+                            UPDATE
+                        </button>
+                    </form>
+                    
+                    <!-- Delete Icon -->
+                    
+                    <form class="d-inline" method="post" action="{% url 'delete' i.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">
+                            DELETE
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+    
+</div>
+{% endblock content %}
